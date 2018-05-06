@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
@@ -7,6 +7,21 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MEAN';
-  constructor(private _httpService: HttpService) { }
+  tasks = [];
+  title = 'Restful Task API';
+  constructor(private _httpService: HttpService) {
+
+  }
+
+  ngOnInit(){
+    this.getTaskFromService();
+  }
+
+  getTaskFromService(){
+    let observable = this._httpService.getTasks();
+    observable.subscribe(data => {
+      console.log(data);
+      this.tasks = data['data'];
+    });
+  }
 }
