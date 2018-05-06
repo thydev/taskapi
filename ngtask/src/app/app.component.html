@@ -5,7 +5,15 @@
   </h1>
 </div>
 <h2>All Tasks </h2>
+<button (click)="btnGetAllTask()">Get All Tasks</button>
 <ul>
-  <li *ngFor="let task of tasks">{{task.title}}</li>
+  <li *ngFor="let task of tasks">
+
+    {{task.title}} - <button (click)="btnShowTask(task._id)">Show</button>
+  </li>
 </ul>
 
+<div *ngIf="task.length > 0">
+  <h2>{{task[0].title}}</h2>
+  <p>{{task[0].description}}</p>
+</div>

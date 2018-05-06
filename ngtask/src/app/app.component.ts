@@ -8,13 +8,14 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   tasks = [];
+  task = {};
   title = 'Restful Task API';
   constructor(private _httpService: HttpService) {
 
   }
 
   ngOnInit(){
-    this.getTaskFromService();
+    // this.getTaskFromService();
   }
 
   getTaskFromService(){
@@ -23,5 +24,23 @@ export class AppComponent {
       console.log(data);
       this.tasks = data['data'];
     });
+  }
+
+  getTaskById(id: string) {
+    let obsTask = this._httpService.getTask(id);
+    obsTask.subscribe(data => {
+      console.log(data);
+      this.task = data['data'];
+    });
+  }
+
+  btnGetAllTask(): void{
+    console.log("clicked")
+    this.getTaskFromService();
+  }
+
+  btnShowTask(id: string): void {
+    console.log(id);
+    this.getTaskById(id);
   }
 }
