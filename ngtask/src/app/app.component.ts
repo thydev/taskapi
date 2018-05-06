@@ -9,6 +9,7 @@ import { HttpService } from './http.service';
 export class AppComponent {
   tasks = [];
   task = {};
+  newTask: any;
   title = 'Restful Task API';
   constructor(private _httpService: HttpService) {
 
@@ -16,6 +17,7 @@ export class AppComponent {
 
   ngOnInit(){
     // this.getTaskFromService();
+    this.newTask = { title: "", description: "" }
   }
 
   getTaskFromService(){
@@ -42,5 +44,18 @@ export class AppComponent {
   btnShowTask(id: string): void {
     console.log(id);
     this.getTaskById(id);
+  }
+
+  addTask(aTask: any) {
+    let obsTask = this._httpService.addTask(aTask);
+    obsTask.subscribe(data => {
+      console.log("back from creating", data);
+    });
+  }
+  onSubmit() {
+    // Code to send off the form data (this.newTask) to the Service
+    this.addTask(this.newTask)
+    // Reset this.newTask to a new, clean object.
+    this.newTask = { title: "", description: "" }
   }
 }

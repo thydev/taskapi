@@ -17,3 +17,15 @@
   <h2>{{task[0].title}}</h2>
   <p>{{task[0].description}}</p>
 </div>
+
+<div class="newTask">
+    <form (submit)="onSubmit()">
+        <!-- use the json pipe to see how newTask changes in real time -->
+        <p> {{ newTask | json }} </p>
+        <label for="">Title:
+          <input type="text" name="newTask.title" [(ngModel)]="newTask.title" />
+        </label>
+        <input type="text" name="newTask.description" [(ngModel)]="newTask.description" />
+        <input type="submit" value="Create Task" />
+    </form>
+</div>
