@@ -22,6 +22,20 @@ export class HttpService {
   }
 
   addTask(newtask){
-    return this._http.post('/tasks', newtask)
+    return this._http.post('/tasks', newtask);
+  }
+
+  updateTask(id: string, newtask){
+    return this._http.put('/tasks/' + id, newtask, 
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+  }
+
+  deleteTask(id: string){
+    return this._http.delete('/tasks/' + id);
   }
 }

@@ -17,6 +17,7 @@ module.exports = (app) => {
     });
 
     app.put('/tasks/:id', (req, res) => {
+        console.log("request: body", req);
         tasks.updateById(req, res);
     });
 
