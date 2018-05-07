@@ -12,6 +12,7 @@ export class AppComponent {
   newTask: any;
   editTask: any;
   isEditTask = false;
+  selectedTask: any;
 
   title = 'Restful Task API';
   constructor(private _httpService: HttpService) {
@@ -21,6 +22,10 @@ export class AppComponent {
   ngOnInit(){
     this.getTaskFromService();
     this.newTask = { title: "", description: "" }
+  }
+  
+  taskToShow(aTask) {
+    this.selectedTask = aTask;
   }
 
   getTaskFromService(){
